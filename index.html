@@ -33,7 +33,7 @@ body{ background:var(--bg); color:var(--text); font-family:"M PLUS 2",-apple-sys
 
 /* header */
 header{ background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:60; }
-.hwrap{ max-width:1000px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
+.hwrap{ max-width:1200px; margin:0 auto; padding:0 24px; height:64px; display:flex; align-items:center; justify-content:space-between; }
 .langx-logo{ font-weight:800; font-size:18px; letter-spacing:-.02em; color:var(--navy); }
 .ver-tag{ margin-left:8px; font:600 11px "M PLUS 2"; letter-spacing:.02em; color:var(--navy); background:var(--navy-soft); padding:3px 8px; border-radius:9999px; vertical-align:middle; }
 .icon-btn{ width:36px; height:36px; border-radius:9999px; border:0; background:transparent; color:var(--text2); cursor:pointer; font-size:16px; }
@@ -43,19 +43,19 @@ header{ background:var(--surface); border-bottom:1px solid var(--border); positi
 .nav a.nav-disabled{ color:var(--text3); opacity:.5; cursor:default; pointer-events:none; }
 .avatar{ width:36px; height:36px; border-radius:9999px; background:var(--btn-bg); color:var(--btn-fg); display:flex; align-items:center; justify-content:center; font:600 13px "M PLUS 2"; }
 .header-plan{ background:var(--panel); border-top:1px solid var(--border); }
-.hp-wrap{ max-width:1000px; margin:0 auto; padding:8px 24px; display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px; }
-.hp-wrap .lbl{ font:700 11px "M PLUS 2"; letter-spacing:.06em; text-transform:uppercase; color:var(--navy); }
-.plan-name{ font:700 13px "M PLUS 2"; color:var(--navy); background:var(--navy-soft); padding:3px 10px; border-radius:9999px; }
+.hp-wrap{ max-width:1200px; margin:0 auto; padding:8px 24px; display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px; }
+.hp-wrap .lbl{ font:700 11px "M PLUS 2"; letter-spacing:.06em; text-transform:uppercase; color:var(--text3); }
+.plan-name{ font:700 13px "M PLUS 2"; color:var(--text2); background:var(--panel2); padding:3px 10px; border-radius:9999px; }
 .hp-wrap .sep{ width:1px; height:16px; background:var(--border2); }
 .cm-label{ font:600 11px "M PLUS 2"; letter-spacing:.04em; text-transform:uppercase; color:var(--text3); }
 .cm-bar{ width:104px; height:8px; border-radius:9999px; background:var(--panel2); overflow:hidden; display:inline-block; vertical-align:middle; }
-.cm-bar > span{ display:block; height:100%; background:var(--navy); border-radius:9999px; }
+.cm-bar > span{ display:block; height:100%; background:var(--text3); border-radius:9999px; }
 .cm-val{ font:500 13px "M PLUS 2"; color:var(--text2); }
-.cm-val b{ font:800 16px "M PLUS 2"; color:var(--navy); }
+.cm-val b{ font:700 14px "M PLUS 2"; color:var(--text); }
 .plan-metric{ font:500 13px "M PLUS 2"; color:var(--text); }
 .plan-metric.muted{ color:var(--text2); }
 @media(max-width:620px){ .nav{ gap:16px; } .nav a{ font-size:13px; } }
-main{ max-width:1000px; margin:0 auto; padding:28px 24px 64px; }
+main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
 .demo-note{ font:400 13px/19px "M PLUS 2"; color:var(--text2); background:var(--panel); border:1px dashed var(--border2); border-radius:10px; padding:12px 14px; margin-bottom:20px; }
 
 /* buttons */
@@ -70,7 +70,9 @@ main{ max-width:1000px; margin:0 auto; padding:28px 24px 64px; }
 .min-left{ flex:1; min-width:0; }
 .min-eyebrow{ font:700 11px "M PLUS 2"; letter-spacing:.1em; text-transform:uppercase; color:var(--text3); }
 .min-eyebrow b{ color:var(--navy); }
-.min-title{ font:800 18px "M PLUS 2"; color:var(--text); letter-spacing:-.01em; margin:5px 0 12px; }
+.min-title{ font:800 18px "M PLUS 2"; color:var(--text); letter-spacing:-.01em; margin:5px 0 4px; }
+.min-meta{ display:flex; align-items:center; gap:6px; margin:0 0 12px; }
+.min-badge{ display:inline-flex; align-items:center; font:500 11px "M PLUS 2"; letter-spacing:.01em; color:var(--text2); background:transparent; border:1px solid var(--border2); padding:2px 8px; border-radius:9999px; }
 .min-prog{ display:flex; align-items:center; gap:12px; }
 .min-bar{ flex:1; max-width:340px; height:6px; border-radius:9999px; background:var(--panel2); overflow:hidden; }
 .min-bar i{ display:block; height:100%; background:var(--green); border-radius:9999px; }
@@ -123,21 +125,21 @@ main{ max-width:1000px; margin:0 auto; padding:28px 24px 64px; }
 .modal-body{ margin-top:14px; max-height:70vh; overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding-right:4px; }
 
 /* active-course list rows */
-.m-course{ display:flex; align-items:center; gap:14px; padding:12px; border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:border-color .12s, background .12s; }
-.m-course:hover{ border-color:var(--navy); background:var(--navy-soft); }
-.m-course.on{ border-color:var(--navy); background:var(--navy-soft); }
+.m-course{ display:flex; align-items:center; gap:14px; padding:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:border-color .12s, box-shadow .12s; }
+.m-course:not(.on):hover{ border-color:#4a7ba6; background:var(--surface); box-shadow:0 4px 12px rgba(0,0,51,.10); }
+.m-course.on{ border-color:var(--navy); background:var(--navy-soft); cursor:default; box-shadow:inset 0 0 0 1px var(--navy); }
 .m-main{ flex:1; min-width:0; }
 .m-name{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; font:700 14.5px "M PLUS 2"; color:var(--text); }
 .m-sub{ font:400 12.5px "M PLUS 2"; color:var(--text2); margin-top:2px; }
 .m-prog{ display:flex; align-items:center; gap:8px; margin-top:8px; }
-.m-bar{ flex:1; max-width:180px; height:5px; border-radius:9999px; background:var(--panel2); overflow:hidden; }
+.m-bar{ flex:1; max-width:180px; height:5px; border-radius:9999px; background:var(--border2); overflow:hidden; }
 .m-bar i{ display:block; height:100%; background:var(--green); border-radius:9999px; }
 .m-pct{ font:500 11.5px "M PLUS 2"; color:var(--text3); }
 .m-last{ display:flex; flex-direction:column; align-items:flex-end; gap:2px; flex:0 0 auto; text-align:right; }
-.m-last-lbl{ font:600 9.5px "M PLUS 2"; letter-spacing:.05em; text-transform:uppercase; color:var(--text3); }
-.m-last-val{ display:inline-flex; align-items:center; gap:4px; font:600 12px "M PLUS 2"; color:var(--text2); }
+.m-last-lbl{ font:500 9.5px "M PLUS 2"; letter-spacing:.05em; text-transform:uppercase; color:var(--text3); opacity:.8; }
+.m-last-val{ display:inline-flex; align-items:center; gap:4px; font:500 12px "M PLUS 2"; color:var(--text3); }
 .m-last-val svg{ width:12px; height:12px; color:var(--text3); }
-.m-flag{ font:700 9.5px "M PLUS 2"; letter-spacing:.04em; text-transform:uppercase; color:var(--navy); background:var(--navy-soft); padding:2px 7px; border-radius:9999px; }
+.m-flag{ font:700 9.5px "M PLUS 2"; letter-spacing:.04em; text-transform:uppercase; color:var(--btn-fg); background:var(--navy); padding:2px 7px; border-radius:9999px; }
 @media(max-width:520px){ .m-last{ display:none; } }
 </style>
 </head>
@@ -184,6 +186,10 @@ main{ max-width:1000px; margin:0 auto; padding:28px 24px 64px; }
     <div class="min-left">
       <div class="min-eyebrow"><b>Continue</b> · <span id="min-course">Intermediate Business English</span></div>
       <div class="min-title" id="min-title">Lesson 4 — Giving Constructive Feedback</div>
+      <div class="min-meta">
+        <span class="min-badge" id="min-level">B1</span>
+        <span class="min-badge" id="min-dur">12 min</span>
+      </div>
       <div class="min-prog">
         <span class="min-bar"><i id="min-bar-i" style="width:25%"></i></span>
         <span class="min-pct" id="min-pct">3 / 12 lessons</span>
@@ -218,7 +224,6 @@ main{ max-width:1000px; margin:0 auto; padding:28px 24px 64px; }
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="switchModalTitle">
     <div class="modal-head">
       <div>
-        <div class="modal-eyebrow">Switch course</div>
         <div class="modal-title" id="switchModalTitle">Your active courses</div>
         <div class="modal-sub" id="switchModalCount"></div>
       </div>
@@ -262,8 +267,10 @@ main{ max-width:1000px; margin:0 auto; padding:28px 24px 64px; }
      lessons:['Researching the Company','Common Interview Questions','Talking About Your Experience','Answering Tough Questions','Behavioral Questions (STAR)','Questions to Ask Them','Salary Negotiation','Virtual Interviews','Mock Interview']}
   ];
   var currentId='ibe';
+  var lastDays={'Today':0,'2 days ago':2,'3 days ago':3,'1 week ago':7,'2 weeks ago':14,'3 weeks ago':21};
 
   var clock='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+  var calIc='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
   var icDone='<svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>';
   var icPlay='<svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
   var icUp='<svg fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg>';
@@ -276,19 +283,25 @@ main{ max-width:1000px; margin:0 auto; padding:28px 24px 64px; }
 
   function renderModal(){
     countEl.textContent=COURSES.length+' courses in progress';
-    body.innerHTML=COURSES.map(function(c){
+    var cur=COURSES.filter(function(c){return c.id===currentId;});
+    var rest=COURSES.filter(function(c){return c.id!==currentId;}).sort(function(a,b){
+      return (lastDays[a.last]==null?999:lastDays[a.last])-(lastDays[b.last]==null?999:lastDays[b.last]);
+    });
+    var ordered=cur.concat(rest);
+    body.innerHTML=ordered.map(function(c){
       var total=c.lessons.length, pct=Math.round(c.done/total*100);
       var flag=c.id===currentId?'<span class="m-flag">Current</span>':'';
-      return '<div class="m-course'+(c.id===currentId?' on':'')+'" data-id="'+c.id+'">'
+      return '<div class="m-course'+(c.id===currentId?' on':'')+'"'+(c.id===currentId?' aria-current="true"':'')+' data-id="'+c.id+'">'
         +'<div class="m-main">'
         +'<div class="m-name">'+c.name+' <span class="lvl '+lvlClass(c.level)+'" style="margin-left:2px">'+c.level+'</span> '+flag+'</div>'
         +'<div class="m-sub">'+c.cat+'</div>'
         +'<div class="m-prog"><span class="m-bar"><i style="width:'+pct+'%"></i></span><span class="m-pct">'+c.done+' / '+total+'</span></div>'
         +'</div>'
-        +'<div class="m-last"><span class="m-last-lbl">Last studied</span><span class="m-last-val">'+clock+c.last+'</span></div>'
+        +'<div class="m-last"><span class="m-last-lbl">Last studied</span><span class="m-last-val">'+c.last+'</span></div>'
         +'</div>';
     }).join('');
     body.querySelectorAll('.m-course').forEach(function(row){
+      if(row.classList.contains('on')) return;
       row.addEventListener('click', function(){ selectCourse(row.getAttribute('data-id')); });
     });
   }
@@ -297,6 +310,8 @@ main{ max-width:1000px; margin:0 auto; padding:28px 24px 64px; }
     var total=c.lessons.length, pct=Math.round(c.done/total*100);
     byId('min-course').textContent=c.name;
     byId('min-title').textContent='Lesson '+(c.done+1)+' — '+c.lessons[c.done];
+    byId('min-level').textContent=c.level;
+    byId('min-dur').textContent=mins[c.done%mins.length]+' min';
     byId('min-bar-i').style.width=pct+'%';
     byId('min-pct').textContent=c.done+' / '+total+' lessons';
     byId('cc-name').textContent=c.name;
@@ -322,7 +337,8 @@ main{ max-width:1000px; margin:0 auto; padding:28px 24px 64px; }
   function open(){ renderModal(); overlay.hidden=false; }
   function close(){ overlay.hidden=true; }
 
-  byId('showOtherCourses').addEventListener('click', function(e){ e.preventDefault(); open(); });
+  var trigger=byId('showOtherCourses');
+  if(trigger) trigger.addEventListener('click', function(e){ e.preventDefault(); open(); });
   byId('switchModalClose').addEventListener('click', close);
   overlay.addEventListener('click', function(e){ if(e.target===overlay) close(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
