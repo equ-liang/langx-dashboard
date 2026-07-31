@@ -103,18 +103,24 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
 .cc-les.current .cl-title{ color:var(--navy); font-weight:800; }
 .cc-les.up .cl-title{ color:var(--text3); font-weight:500; }
 .cc-les.up .cl-title b{ color:var(--text3); }
-.cc-les .cl-dur{ flex:0 0 auto; display:inline-flex; align-items:center; gap:5px; font:500 12.5px "M PLUS 2"; color:var(--text3); }
-.cc-les .cl-dur svg{ width:13px; height:13px; }
+.cc-les .cl-dur{ flex:0 0 auto; display:flex; align-items:center; gap:4px; font:500 12.5px "M PLUS 2"; color:var(--text3); }
+.cc-les .cl-dur svg{ width:16px; height:16px; flex:0 0 auto; }
 .cc-les .cl-tag{ flex:0 0 auto; width:86px; text-align:center; font:700 10.5px "M PLUS 2"; letter-spacing:.03em; text-transform:uppercase; padding:4px 0; border-radius:9999px; }
 .cc-les .cl-tag.done{ color:var(--green); background:var(--green-soft); }
 .cc-les .cl-tag.current{ color:var(--navy); background:var(--navy-soft); }
 .cc-les .cl-tag.up{ color:var(--text3); background:transparent; }
+.cc-les .cl-score{ flex:0 0 auto; display:inline-flex; align-items:center; gap:4px; font:600 12px "M PLUS 2"; color:var(--green); }
+.cc-les .cl-btn{ flex:0 0 auto; width:86px; text-align:center; cursor:pointer; font:700 11px "M PLUS 2"; letter-spacing:.03em; text-transform:uppercase; padding:6px 0; border-radius:8px; transition:background .12s, color .12s, border-color .12s; }
+.cc-les .cl-continue{ border:0; background:var(--btn-bg); color:var(--btn-fg); }
+.cc-les .cl-continue:hover{ background:var(--btn-bg-hover); }
+.cc-les .cl-review{ border:1px solid var(--border); background:transparent; color:var(--text3); }
+.cc-les .cl-review:hover, .cc-les .cl-review:active{ color:var(--navy); border-color:var(--navy); background:var(--navy-soft); }
 @media(max-width:640px){ .cc-body{ flex-direction:column; align-items:stretch; } .cc-les .cl-dur{ display:none; } }
 
 /* modal */
 .modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:1100; display:flex; align-items:center; justify-content:center; padding:20px; }
 .modal-overlay[hidden]{ display:none; }
-.modal{ width:760px; max-width:100%; background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:0 10px 40px rgba(0,0,0,.3); padding:24px; animation:modalUp .18s ease; }
+.modal{ width:760px; max-width:100%; background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:0 10px 40px rgba(0,0,0,.3); padding:24px 24px 16px; animation:modalUp .18s ease; }
 @keyframes modalUp{ from{ opacity:0; transform:translateY(12px);} to{ opacity:1; transform:none; } }
 .modal-head{ display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:6px; }
 .modal-eyebrow{ font:700 11px "M PLUS 2"; letter-spacing:.08em; text-transform:uppercase; color:var(--navy); }
@@ -123,6 +129,10 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
 .modal-close{ width:32px; height:32px; border:0; background:transparent; color:var(--text3); cursor:pointer; border-radius:8px; font-size:15px; }
 .modal-close:hover{ background:var(--panel2); color:var(--text); }
 .modal-body{ margin-top:14px; max-height:70vh; overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding-right:4px; }
+.sc-foot{ margin-top:10px; padding-top:14px; border-top:1px solid var(--border); display:flex; justify-content:center; }
+.sc-foot a{ display:inline-flex; align-items:center; gap:6px; font:600 13px "M PLUS 2"; color:var(--text2); text-decoration:none; padding:8px 12px; border-radius:9px; cursor:pointer; transition:background .12s, color .12s; }
+.sc-foot a:hover{ color:var(--navy); background:var(--navy-soft); }
+.sc-foot a svg{ width:14px; height:14px; }
 
 /* active-course list rows */
 .m-course{ display:flex; align-items:center; gap:14px; padding:12px; background:var(--surface); border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:border-color .12s, box-shadow .12s; }
@@ -140,6 +150,7 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
 .m-last-val{ display:inline-flex; align-items:center; gap:4px; font:500 12px "M PLUS 2"; color:var(--text3); }
 .m-last-val svg{ width:12px; height:12px; color:var(--text3); }
 .m-flag{ font:700 9.5px "M PLUS 2"; letter-spacing:.04em; text-transform:uppercase; color:var(--btn-fg); background:var(--navy); padding:2px 7px; border-radius:9999px; }
+.m-flag.done{ color:var(--green); background:var(--green-soft); }
 @media(max-width:520px){ .m-last{ display:none; } }
 </style>
 </head>
@@ -184,7 +195,7 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
   <!-- Continue strip -->
   <section class="min-sec">
     <div class="min-left">
-      <div class="min-eyebrow"><b>Continue</b> · <span id="min-course">Intermediate Business English</span></div>
+      <div class="min-eyebrow"><b id="min-eyebrow-label">Continue</b> · <span id="min-course">Intermediate Business English</span></div>
       <div class="min-title" id="min-title">Lesson 4 — Giving Constructive Feedback</div>
       <div class="min-meta">
         <span class="min-badge" id="min-level">B1</span>
@@ -195,7 +206,7 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
         <span class="min-pct" id="min-pct">3 / 12 lessons</span>
       </div>
     </div>
-    <button class="btn">Continue where you left off
+    <button class="btn"><span id="cta-label">Continue where you left off</span>
       <svg fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" style="width:15px;height:15px;margin-left:6px"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </button>
   </section>
@@ -224,12 +235,17 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="switchModalTitle">
     <div class="modal-head">
       <div>
-        <div class="modal-title" id="switchModalTitle">Your active courses</div>
+        <div class="modal-title" id="switchModalTitle">Your courses</div>
         <div class="modal-sub" id="switchModalCount"></div>
       </div>
       <button class="modal-close" id="switchModalClose" aria-label="Close">&#10005;</button>
     </div>
     <div class="modal-body" id="switchModalBody"></div>
+    <div class="sc-foot">
+      <a id="browseMore" href="#">Browse more courses
+        <svg fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -243,7 +259,7 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
      lessons:['Introduction to Small Talk','Workplace Etiquette','Vocabulary: Financial Terms','Giving Constructive Feedback','Communication: Negotiation Tactics','Effective Email Writing','Pitching Ideas','Leading Global Teams','Crisis Management Vocabulary','Cross-Cultural Communication','Executive Presentations','Business English Capstone']},
     {id:'evc', name:'Everyday Conversation', level:'A2',
      cat:'General English · Casual daily situations',
-     last:'2 days ago', done:6,
+     last:'2 days ago', done:10,
      lessons:['Greetings & Introductions','Talking About Your Day','Shopping & Prices','Making Plans with Friends','Ordering Food & Drinks','Asking for Directions','Small Talk About Weather','Phone Conversations','Expressing Opinions','Everyday Conversation Review']},
     {id:'aps', name:'Advanced Presentation Skills', level:'C1',
      cat:'Business English · Public speaking & delivery',
@@ -251,7 +267,7 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
      lessons:['Presentation Fundamentals','Knowing Your Audience','Structuring Your Talk','Opening with Impact','Designing Clear Slides','Data Storytelling','Body Language & Voice','Handling Q&A','Persuasive Techniques','Managing Nerves','Virtual Presentations','Team Presentations','Executive Briefings','Capstone Presentation']},
     {id:'gre', name:'Grammar Essentials', level:'A2',
      cat:'General English · Core grammar foundations',
-     last:'3 days ago', done:8,
+     last:'3 days ago', done:10,
      lessons:['Nouns & Articles','Present Simple','Present Continuous','Past Simple','Countable & Uncountable','Comparatives & Superlatives','Prepositions of Place',"Future with 'going to'",'Conditionals (First)','Grammar Review']},
     {id:'tra', name:'Travel English', level:'A2',
      cat:'General English · Airports, hotels & directions',
@@ -268,6 +284,7 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
   ];
   var currentId='ibe';
   var lastDays={'Today':0,'2 days ago':2,'3 days ago':3,'1 week ago':7,'2 weeks ago':14,'3 weeks ago':21};
+  var scorePool=[92,88,95,90,86,94];
 
   var clock='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
   var calIc='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
@@ -282,20 +299,22 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
   var countEl=byId('switchModalCount');
 
   function renderModal(){
-    countEl.textContent=COURSES.length+' courses in progress';
+    countEl.textContent=COURSES.length+' enrolled courses';
+    function byLast(a,b){ return (lastDays[a.last]==null?999:lastDays[a.last])-(lastDays[b.last]==null?999:lastDays[b.last]); }
     var cur=COURSES.filter(function(c){return c.id===currentId;});
-    var rest=COURSES.filter(function(c){return c.id!==currentId;}).sort(function(a,b){
-      return (lastDays[a.last]==null?999:lastDays[a.last])-(lastDays[b.last]==null?999:lastDays[b.last]);
-    });
-    var ordered=cur.concat(rest);
+    var rest=COURSES.filter(function(c){return c.id!==currentId;});
+    var inProgress=rest.filter(function(c){return c.done<c.lessons.length;}).sort(byLast);
+    var completed=rest.filter(function(c){return c.done>=c.lessons.length;}).sort(byLast);
+    var ordered=cur.concat(inProgress, completed);
     body.innerHTML=ordered.map(function(c){
       var total=c.lessons.length, pct=Math.round(c.done/total*100);
-      var flag=c.id===currentId?'<span class="m-flag">Current</span>':'';
+      var isDone=c.done>=total;
+      var flag=c.id===currentId?'<span class="m-flag">Current</span>':(isDone?'<span class="m-flag done">Completed</span>':'');
       return '<div class="m-course'+(c.id===currentId?' on':'')+'"'+(c.id===currentId?' aria-current="true"':'')+' data-id="'+c.id+'">'
         +'<div class="m-main">'
         +'<div class="m-name">'+c.name+' <span class="lvl '+lvlClass(c.level)+'" style="margin-left:2px">'+c.level+'</span> '+flag+'</div>'
         +'<div class="m-sub">'+c.cat+'</div>'
-        +'<div class="m-prog"><span class="m-bar"><i style="width:'+pct+'%"></i></span><span class="m-pct">'+c.done+' / '+total+'</span></div>'
+        +'<div class="m-prog"><span class="m-bar"><i style="width:'+pct+'%"></i></span><span class="m-pct">'+(isDone?'100%':c.done+' / '+total)+'</span></div>'
         +'</div>'
         +'<div class="m-last"><span class="m-last-lbl">Last studied</span><span class="m-last-val">'+c.last+'</span></div>'
         +'</div>';
@@ -308,10 +327,19 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
 
   function renderCard(c){
     var total=c.lessons.length, pct=Math.round(c.done/total*100);
+    var completed=c.done>=total;
     byId('min-course').textContent=c.name;
-    byId('min-title').textContent='Lesson '+(c.done+1)+' — '+c.lessons[c.done];
+    byId('min-eyebrow-label').textContent=completed?'Completed':'Continue';
+    if(completed){
+      byId('min-title').textContent='All lessons completed';
+      byId('min-dur').textContent=total+' lessons';
+      byId('cta-label').textContent='Review course';
+    } else {
+      byId('min-title').textContent='Lesson '+(c.done+1)+' — '+c.lessons[c.done];
+      byId('min-dur').textContent=mins[c.done%mins.length]+' min';
+      byId('cta-label').textContent='Continue where you left off';
+    }
     byId('min-level').textContent=c.level;
-    byId('min-dur').textContent=mins[c.done%mins.length]+' min';
     byId('min-bar-i').style.width=pct+'%';
     byId('min-pct').textContent=c.done+' / '+total+' lessons';
     byId('cc-name').textContent=c.name;
@@ -320,12 +348,19 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
     byId('cc-lessons').innerHTML=c.lessons.map(function(t,i){
       var st=i<c.done?'done':(i===c.done?'current':'up');
       var ic=st==='done'?icDone:(st==='current'?icPlay:icUp);
-      var tag=st==='done'?'Completed':(st==='current'?'Continue':'Not started');
+      var trailing;
+      if(st==='done'){
+        trailing='<button type="button" class="cl-btn cl-review">Review</button>';
+      } else if(st==='current'){
+        trailing='<button type="button" class="cl-btn cl-continue">Continue</button>';
+      } else {
+        trailing='<span class="cl-tag up">Not started</span>';
+      }
       return '<li class="cc-les '+st+'">'
         +'<span class="cl-ic">'+ic+'</span>'
         +'<span class="cl-title"><b>'+(i+1)+'.</b> '+t+'</span>'
         +'<span class="cl-dur">'+clock+mins[i%mins.length]+' min</span>'
-        +'<span class="cl-tag '+st+'">'+tag+'</span>'
+        +trailing
         +'</li>';
     }).join('');
   }
@@ -340,6 +375,8 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
   var trigger=byId('showOtherCourses');
   if(trigger) trigger.addEventListener('click', function(e){ e.preventDefault(); open(); });
   byId('switchModalClose').addEventListener('click', close);
+  var browse=byId('browseMore');
+  if(browse) browse.addEventListener('click', function(e){ e.preventDefault(); close(); /* navigate to Course Directory */ });
   overlay.addEventListener('click', function(e){ if(e.target===overlay) close(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
 
