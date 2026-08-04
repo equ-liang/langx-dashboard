@@ -95,26 +95,35 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
 .cc-les{ display:flex; align-items:center; gap:14px; padding:9px 12px; border-radius:10px; }
 .cc-les .cl-ic{ width:26px; height:26px; border-radius:9999px; flex:0 0 auto; display:flex; align-items:center; justify-content:center; background:var(--panel2); color:var(--text3); }
 .cc-les .cl-ic svg{ width:14px; height:14px; }
+.cc-les.unlocked .cl-ic svg{ width:16px; height:16px; }
 .cc-les.done .cl-ic{ background:var(--green-soft); color:var(--green); }
 .cc-les.current .cl-ic{ background:var(--navy-soft); color:var(--navy); border:1px solid rgba(3,50,86,0.28); }
-.cc-les .cl-title{ flex:1; min-width:0; font:600 14px "M PLUS 2"; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.cc-les .cl-titlewrap{ flex:1; min-width:0; display:flex; align-items:center; gap:6px; }
+.cc-les .cl-type{ flex:0 0 auto; font:500 11.5px "M PLUS 2"; color:var(--text3); }
+.cc-les .cl-title{ flex:0 1 auto; min-width:0; font:600 14px "M PLUS 2"; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .cc-les .cl-title b{ color:var(--text3); font-weight:700; margin-right:4px; }
 .cc-les.current{ background:var(--navy-soft); }
 .cc-les.current .cl-title{ color:var(--navy); font-weight:800; }
-.cc-les.up .cl-title{ color:var(--text3); font-weight:500; }
-.cc-les.up .cl-title b{ color:var(--text3); }
-.cc-les .cl-dur{ flex:0 0 auto; display:flex; align-items:center; gap:4px; font:500 12.5px "M PLUS 2"; color:var(--text3); }
-.cc-les .cl-dur svg{ width:16px; height:16px; flex:0 0 auto; }
+.cc-les.locked{ opacity:.6; }
+.cc-les.locked .cl-title{ color:var(--text3); font-weight:500; }
+.cc-les.locked .cl-title b{ color:var(--text3); }
+.cc-les .cl-dur{ flex:0 0 auto; width:64px; display:flex; align-items:center; gap:4px; font:500 12.5px "M PLUS 2"; color:var(--text3); }
+.cc-les .cl-dur svg{ width:16px; height:16px; flex:0 0 auto; transform:translateY(1px); }
 .cc-les .cl-tag{ flex:0 0 auto; width:86px; text-align:center; font:700 10.5px "M PLUS 2"; letter-spacing:.03em; text-transform:uppercase; padding:4px 0; border-radius:9999px; }
 .cc-les .cl-tag.done{ color:var(--green); background:var(--green-soft); }
 .cc-les .cl-tag.current{ color:var(--navy); background:var(--navy-soft); }
 .cc-les .cl-tag.up{ color:var(--text3); background:transparent; }
 .cc-les .cl-score{ flex:0 0 auto; display:inline-flex; align-items:center; gap:4px; font:600 12px "M PLUS 2"; color:var(--green); }
+.cc-les .cl-result{ flex:0 0 auto; display:inline-flex; align-items:baseline; gap:6px; font:500 12px "M PLUS 2"; color:var(--text2); }
+.cc-les .cl-result .cl-result-k{ font:700 9.5px "M PLUS 2"; letter-spacing:.04em; text-transform:uppercase; color:var(--text3); }
 .cc-les .cl-btn{ flex:0 0 auto; width:86px; text-align:center; cursor:pointer; font:700 11px "M PLUS 2"; letter-spacing:.03em; text-transform:uppercase; padding:6px 0; border-radius:8px; transition:background .12s, color .12s, border-color .12s; }
 .cc-les .cl-continue{ border:0; background:var(--btn-bg); color:var(--btn-fg); }
 .cc-les .cl-continue:hover{ background:var(--btn-bg-hover); }
 .cc-les .cl-review{ border:1px solid var(--border); background:transparent; color:var(--text3); }
 .cc-les .cl-review:hover, .cc-les .cl-review:active{ color:var(--navy); border-color:var(--navy); background:var(--navy-soft); }
+.cc-les .cl-start{ border:1px solid var(--navy); background:transparent; color:var(--navy); }
+.cc-les .cl-start:hover, .cc-les .cl-start:active{ background:var(--navy-soft); }
+.cc-les .cl-lock{ flex:0 0 auto; display:inline-flex; align-items:center; gap:5px; font:500 12px "M PLUS 2"; color:var(--text3); }
 @media(max-width:640px){ .cc-body{ flex-direction:column; align-items:stretch; } .cc-les .cl-dur{ display:none; } }
 
 /* modal */
@@ -284,13 +293,19 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
   ];
   var currentId='ibe';
   var lastDays={'Today':0,'2 days ago':2,'3 days ago':3,'1 week ago':7,'2 weeks ago':14,'3 weeks ago':21};
-  var scorePool=[92,88,95,90,86,94];
+  var typePool=['CEFR','PRACTICE','Eiken'];
+  function resultFor(type){ return type==='CEFR' ? 'B2 · 2.76' : 'Passed'; }
+  var months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var today=new Date(2026,7,4);
 
   var clock='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
   var calIc='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
   var icDone='<svg fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>';
   var icPlay='<svg fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
   var icUp='<svg fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg>';
+  var icLock='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>';
+  var icLockOpen='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 7.5-2"/></svg>';
+  var icCircle='<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>';
   function lvlClass(l){ var m=(l.match(/[ABC]/)||['B'])[0]; return m.toLowerCase(); }
   function byId(id){ return document.getElementById(id); }
 
@@ -312,7 +327,7 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
       var flag=c.id===currentId?'<span class="m-flag">Current</span>':(isDone?'<span class="m-flag done">Completed</span>':'');
       return '<div class="m-course'+(c.id===currentId?' on':'')+'"'+(c.id===currentId?' aria-current="true"':'')+' data-id="'+c.id+'">'
         +'<div class="m-main">'
-        +'<div class="m-name">'+c.name+' <span class="lvl '+lvlClass(c.level)+'" style="margin-left:2px">'+c.level+'</span> '+flag+'</div>'
+        +'<div class="m-name"><span class="lvl '+lvlClass(c.level)+'">'+c.level+'</span> '+c.name+' '+flag+'</div>'
         +'<div class="m-sub">'+c.cat+'</div>'
         +'<div class="m-prog"><span class="m-bar"><i style="width:'+pct+'%"></i></span><span class="m-pct">'+(isDone?'100%':c.done+' / '+total)+'</span></div>'
         +'</div>'
@@ -346,20 +361,36 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
     var lv=byId('cc-level'); lv.textContent=c.level; lv.className='lvl '+lvlClass(c.level);
     byId('cc-cat').textContent=c.cat;
     byId('cc-lessons').innerHTML=c.lessons.map(function(t,i){
-      var st=i<c.done?'done':(i===c.done?'current':'up');
-      var ic=st==='done'?icDone:(st==='current'?icPlay:icUp);
-      var trailing;
-      if(st==='done'){
+      var dur='<span class="cl-dur">'+clock+mins[i%mins.length]+' min</span>';
+      var type=typePool[i%typePool.length];
+      var typeBadge='<span class="cl-type">· '+type+'</span>';
+      var st, meta='', result='', trailing='';
+      if(i<c.done){
+        st='done';
+        meta=dur;
+        result='<span class="cl-result">'+resultFor(type)+'</span>';
         trailing='<button type="button" class="cl-btn cl-review">Review</button>';
-      } else if(st==='current'){
+      } else if(i===c.done){
+        st='current';
+        meta=dur;
         trailing='<button type="button" class="cl-btn cl-continue">Continue</button>';
       } else {
-        trailing='<span class="cl-tag up">Not started</span>';
+        var d=new Date(2026,7,4); d.setDate(d.getDate()+((i-c.done-1)*7-3));
+        if(d<=today){
+          st='unlocked';
+          meta=dur;
+          trailing='<button type="button" class="cl-btn cl-start">Start</button>';
+        } else {
+          st='locked';
+          typeBadge='';
+          trailing='<span class="cl-lock">Available '+months[d.getMonth()]+' '+d.getDate()+'</span>';
+        }
       }
+      var ic=st==='done'?icDone:(st==='current'?icPlay:(st==='unlocked'?icCircle:icLock));
       return '<li class="cc-les '+st+'">'
         +'<span class="cl-ic">'+ic+'</span>'
-        +'<span class="cl-title"><b>'+(i+1)+'.</b> '+t+'</span>'
-        +'<span class="cl-dur">'+clock+mins[i%mins.length]+' min</span>'
+        +'<div class="cl-titlewrap"><span class="cl-title"><b>'+(i+1)+'.</b> '+t+'</span>'+typeBadge+result+'</div>'
+        +meta
         +trailing
         +'</li>';
     }).join('');
