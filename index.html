@@ -161,6 +161,100 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
 .m-flag{ font:700 9.5px "M PLUS 2"; letter-spacing:.04em; text-transform:uppercase; color:var(--btn-fg); background:var(--navy); padding:2px 7px; border-radius:9999px; }
 .m-flag.done{ color:var(--green); background:var(--green-soft); }
 @media(max-width:520px){ .m-last{ display:none; } }
+/* ===== Courses page (ported from v1.1 C) ===== */
+.sec-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:16px; flex-wrap:wrap; }
+.sec-head h2{ margin:0; font:600 22px "M PLUS 2"; letter-spacing:-.01em; }
+.sub{ font:400 13.5px "M PLUS 2"; color:var(--text2); margin:2px 0 0; }
+.toolbar{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:18px; }
+.search{ flex:1 1 260px; display:flex; align-items:center; gap:8px; height:40px; padding:0 14px; background:var(--surface); border:1px solid var(--border2); border-radius:10px; color:var(--text3); }
+.search input{ border:0; background:transparent; color:var(--text); font:400 14px "M PLUS 2"; width:100%; outline:none; }
+.select{ height:40px; padding:0 12px; border:1px solid var(--border2); border-radius:10px; background:var(--surface); color:var(--text2); font:500 13px "M PLUS 2"; cursor:pointer; display:inline-flex; align-items:center; gap:6px; }
+.chips{ display:flex; gap:8px; flex-wrap:wrap; }
+.pill{ height:32px; padding:0 14px; border-radius:9999px; cursor:pointer; font:500 13px "M PLUS 2"; background:var(--surface); color:var(--text2); border:1px solid var(--border2); display:inline-flex; align-items:center; gap:6px; }
+.pill.on{ background:var(--btn-bg); color:var(--btn-fg); border-color:var(--btn-bg); }
+.time-hint{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; background:var(--panel); border:1px dashed var(--border2); border-radius:10px; padding:10px 14px; margin-bottom:18px; }
+.time-hint .t{ font:600 13px "M PLUS 2"; color:var(--text); }
+
+/* ---- interactive dropdown ---- */
+.dd{ position:relative; }
+.dd .select .caret{ margin-left:2px; color:var(--text3); }
+.dd .dd-pre{ color:var(--text3); }
+.dd .dd-val{ color:var(--text); font-weight:700; }
+.dd.open .select{ border-color:var(--navy); }
+.dd-menu{ position:absolute; top:calc(100% + 6px); left:0; min-width:190px; background:var(--surface); border:1px solid var(--border2); border-radius:10px; box-shadow:0 12px 30px rgba(0,0,0,.14); padding:6px; display:none; z-index:70; }
+.dd.open .dd-menu{ display:block; }
+.dd-opt{ display:flex; align-items:center; width:100%; text-align:left; height:34px; padding:0 10px; border:0; background:transparent; color:var(--text); font:500 13px "M PLUS 2"; border-radius:7px; cursor:pointer; }
+.dd-opt:hover{ background:var(--panel2); }
+.dd-opt.on{ color:var(--navy); font-weight:700; }
+.dd-opt.on::after{ content:"✓"; margin-left:auto; padding-left:12px; }
+.cat{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 20px; margin-bottom:22px; }
+.cat-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:16px; }
+.cat-head .ci{ display:flex; gap:12px; }
+.cat-icon{ width:38px; height:38px; border-radius:10px; background:var(--navy-soft); color:var(--navy); display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+.cat-title{ font:700 17px "M PLUS 2"; }
+.cat-desc{ font:400 13px/18px "M PLUS 2"; color:var(--text2); margin-top:2px; max-width:640px; }
+.course-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.ccard{ border:1px solid var(--border); border-radius:12px; padding:16px; display:flex; flex-direction:column; gap:10px; background:var(--panel); }
+.ccard .top{ display:flex; align-items:center; justify-content:space-between; }
+.ccard .ct{ font:600 15px "M PLUS 2"; letter-spacing:-.01em; }
+.ccard .cd{ font:400 12.5px/17px "M PLUS 2"; color:var(--text2); }
+.lesson-mini{ display:flex; gap:8px; font:400 12px "M PLUS 2"; color:var(--text2); }
+.lesson-mini .n{ color:var(--text3); }
+.link{ display:inline-flex; align-items:center; gap:5px; font:600 13px "M PLUS 2"; color:var(--navy); text-decoration:none; }
+
+/* ---- courses carousel (image-style, per category) ---- */
+/* each theme = its own white section, separated by the grey page bg */
+.carousel{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px 24px; margin-bottom:20px; box-shadow:0 1px 2px rgba(0,0,51,.04); }
+.c-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:14px; }
+.c-head .ci{ display:flex; gap:12px; align-items:center; }
+.c-head .cat-icon{ width:38px; height:38px; border-radius:10px; background:var(--navy-soft); color:var(--navy); display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+.c-head .cat-title{ font:700 18px "M PLUS 2"; color:var(--text); }
+.c-head .cat-desc{ font:400 12.5px "M PLUS 2"; color:var(--text2); margin-top:2px; }
+.c-nav{ display:flex; align-items:center; gap:14px; flex:0 0 auto; }
+.c-nav button{ display:inline-flex; align-items:center; gap:7px; height:32px; padding:0 2px; border:0; background:transparent; color:var(--text); font:600 14px "M PLUS 2"; cursor:pointer; }
+.c-nav button:hover:not(:disabled){ color:var(--navy); }
+.c-nav button svg{ width:14px; height:14px; }
+.c-nav button:disabled{ color:var(--text3); cursor:default; }
+.c-track{ display:grid; grid-auto-flow:column; grid-auto-columns:calc((100% - 48px)/4); gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; padding-bottom:4px; }
+.c-track::-webkit-scrollbar{ height:0; background:transparent; }
+.jcard{ scroll-snap-align:start; background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; height:100%; cursor:pointer; transition:transform .15s, box-shadow .15s; }
+.jcard:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,51,.10); }
+.jthumb{ position:relative; height:112px; background:var(--panel2); display:flex; align-items:center; justify-content:center; color:var(--navy); }
+.jthumb .art{ opacity:.32; display:flex; }
+.bookmark{ position:absolute; top:11px; right:11px; width:30px; height:30px; border-radius:8px; border:0; background:var(--surface); color:var(--text2); cursor:pointer; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 1px 2px rgba(0,0,0,.08); }
+.bookmark:hover{ color:var(--navy); }
+.bookmark.on{ color:var(--navy); }
+.bookmark.on svg{ fill:var(--navy); }
+.jbody{ padding:15px 16px; display:flex; flex-direction:column; gap:4px; flex:1; }
+.jtitle{ display:flex; align-items:flex-start; gap:6px; font:700 15px "M PLUS 2"; color:var(--text); letter-spacing:-.01em; line-height:1.3; min-height:40px; }
+.verified{ color:var(--navy); flex:0 0 auto; margin-top:2px; }
+.jsub{ font:500 13px "M PLUS 2"; color:var(--text); margin-top:2px; }
+.jsub2{ font:400 13px "M PLUS 2"; color:var(--text2); }
+.jmeta{ font:400 12.5px "M PLUS 2"; color:var(--text3); margin-top:10px; }
+.cat-chip{ position:absolute; top:12px; left:12px; width:34px; height:34px; border-radius:9px; background:var(--surface); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; color:var(--navy); z-index:2; }
+.cat-chip svg{ width:18px; height:18px; }
+.owned-badge{ position:absolute; left:12px; bottom:12px; display:inline-flex; align-items:center; gap:4px; font:600 11px "M PLUS 2"; padding:4px 8px; border-radius:9999px; background:var(--green-soft); color:var(--green); z-index:2; }
+.jthumb .lvl-tr{ position:absolute; top:12px; right:12px; z-index:2; }
+.jthumb .ph{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--text3); }
+.jfoot{ display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:10px; }
+.jfoot .jmeta{ margin-top:0; }
+.jfoot .bookmark{ position:static; width:30px; height:30px; box-shadow:none; background:transparent; }
+.jfoot-actions{ display:inline-flex; align-items:center; gap:6px; }
+.continue-link{ display:inline-flex; align-items:center; gap:4px; font:600 12px "M PLUS 2"; color:var(--navy); text-decoration:none; }
+.continue-link svg{ width:12px; height:12px; }
+.c-dots{ display:flex; justify-content:center; gap:7px; margin-top:16px; }
+.c-dots i{ width:7px; height:7px; border-radius:9999px; background:var(--border2); cursor:pointer; transition:background .15s; }
+.c-dots i.on{ background:var(--text); }
+.c-more{ display:flex; justify-content:center; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); }
+.c-more a{ display:inline-flex; align-items:center; gap:6px; font:600 14px "M PLUS 2"; color:var(--navy); text-decoration:none; }
+@media(max-width:1100px){ .c-track{ grid-auto-columns:calc((100% - 32px)/3); } }
+@media(max-width:820px){ .c-track{ grid-auto-columns:calc((100% - 16px)/2); } }
+@media(max-width:560px){ .c-track{ grid-auto-columns:82%; } }
+
+/* ---- empty state (NEW) ---- */
+.empty{ display:none; text-align:center; padding:56px 20px; color:var(--text3); }
+.empty svg{ margin-bottom:12px; }
+.page{ display:none; } .page.show{ display:block; }
 </style>
 </head>
 <body>
@@ -170,10 +264,10 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
     <div style="display:flex;align-items:center;gap:40px;">
       <span class="langx-logo">LangX</span><span class="ver-tag">v1.2</span>
       <nav class="nav" aria-label="Primary">
-        <a class="active">Dashboard</a>
+        <a data-page="dashboard" class="active">Dashboard</a>
         <a class="nav-disabled" aria-disabled="true">Daily Activities</a>
-        <a>Courses</a>
-        <a>My Page</a>
+        <a data-page="courses">Courses</a>
+        <a class="nav-disabled" aria-disabled="true">My Page</a>
         <a class="nav-disabled" aria-disabled="true">Lesson History</a>
       </nav>
     </div>
@@ -201,6 +295,7 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
 </header>
 
 <main>
+  <div class="page show" id="page-dashboard">
   <!-- Continue strip -->
   <section class="min-sec">
     <div class="min-left">
@@ -237,6 +332,110 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
     </div>
     <ul class="cc-lessons" id="cc-lessons"></ul>
   </section>
+  </div>
+
+  <div class="page" id="page-courses">
+    <div class="sec-head" style="margin-bottom:6px">
+      <div>
+        <h2 style="font-size:26px">Courses</h2>
+        <p class="sub">Explore courses across your categories. Open a category to see every course and its lessons.</p>
+      </div>
+    </div>
+
+    <!-- NEW: search + filters -->
+    <div class="toolbar">
+      <label class="search">🔎 <input id="q" type="text" placeholder="Search courses, lessons, topics…" aria-label="Search courses"></label>
+      <div class="dd" data-key="level" data-prefix="Level">
+        <button class="select" type="button" aria-haspopup="true"><span class="dd-pre">Level:</span> <span class="dd-val">All</span> <span class="caret">▾</span></button>
+        <div class="dd-menu" role="menu"><button class="dd-opt on" type="button" data-val="All" data-btn="All" role="menuitemradio">All levels</button><button class="dd-opt" type="button" data-val="A1" data-btn="A1" role="menuitemradio">A1</button><button class="dd-opt" type="button" data-val="A2" data-btn="A2" role="menuitemradio">A2</button><button class="dd-opt" type="button" data-val="B1" data-btn="B1" role="menuitemradio">B1</button><button class="dd-opt" type="button" data-val="B2" data-btn="B2" role="menuitemradio">B2</button><button class="dd-opt" type="button" data-val="C1" data-btn="C1" role="menuitemradio">C1</button></div>
+      </div>
+      <div class="dd" data-key="time" data-prefix="Time">
+        <button class="select" type="button" aria-haspopup="true"><span class="dd-pre">Time:</span> <span class="dd-val">Any</span> <span class="caret">▾</span></button>
+        <div class="dd-menu" role="menu"><button class="dd-opt on" type="button" data-val="Any" data-btn="Any" role="menuitemradio">Any length</button><button class="dd-opt" type="button" data-val="le3" data-btn="≤3h" role="menuitemradio">Short (≤3h)</button><button class="dd-opt" type="button" data-val="3to5" data-btn="3–5h" role="menuitemradio">Medium (3–5h)</button><button class="dd-opt" type="button" data-val="ge5" data-btn="5h+" role="menuitemradio">Long (5h+)</button></div>
+      </div>
+      <div class="dd" data-key="category" data-prefix="Category">
+        <button class="select" type="button" aria-haspopup="true"><span class="dd-pre">Category:</span> <span class="dd-val">All</span> <span class="caret">▾</span></button>
+        <div class="dd-menu" role="menu"><button class="dd-opt on" type="button" data-val="All" data-btn="All" role="menuitemradio">All categories</button><button class="dd-opt" type="button" data-val="biz" data-btn="Business" role="menuitemradio">Business English</button><button class="dd-opt" type="button" data-val="travel" data-btn="Travel" role="menuitemradio">Travel & Hospitality</button><button class="dd-opt" type="button" data-val="acad" data-btn="Academic" role="menuitemradio">Academic English</button></div>
+      </div>
+      <div class="dd" data-key="sort" data-prefix="Sort">
+        <button class="select" type="button" aria-haspopup="true"><span class="dd-pre">Sort:</span> <span class="dd-val">Recommended</span> <span class="caret">▾</span></button>
+        <div class="dd-menu" role="menu"><button class="dd-opt on" type="button" data-val="rec" data-btn="Recommended" role="menuitemradio">Recommended</button><button class="dd-opt" type="button" data-val="level" data-btn="Level" role="menuitemradio">Level (A→C)</button><button class="dd-opt" type="button" data-val="lessons" data-btn="Lessons" role="menuitemradio">Most lessons</button></div>
+      </div>
+    </div>
+    <div class="time-hint">
+      <span class="t">⏱ How much time do you have?</span>
+      <button class="pill">5 min</button>
+      <button class="pill">10 min</button>
+      <button class="pill">20 min</button>
+      <button class="pill">30 min+</button>
+    </div>
+
+    <div id="results">
+
+
+      <section class="carousel" data-cat="biz">
+        <div class="c-head">
+          <div class="ci"><span class="cat-icon"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span><div><div class="cat-title">Business English</div><div class="cat-desc">Confident, professional communication for the workplace.</div></div></div>
+          <div class="c-nav">
+            <button class="c-prev" aria-label="Previous"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg>Previous</button>
+            <button class="c-next" aria-label="Next">Next<svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></button>
+          </div>
+        </div>
+        <div class="c-track">
+        <div class="jcard" data-lvl="B1" data-lessons="12" data-hours="6" data-idx="0"><div class="jthumb"><span class="owned-badge"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>Purchased</span><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span><span class="lvl b lvl-tr">B1</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Intermediate Business English<svg class="verified" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 8.5-4-1-7-4-7-8.5V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div class="jfoot"><span class="jmeta">12 lessons · 6h</span><span class="jfoot-actions"><a href="#" class="continue-link"><svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>Continue</a><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></span></div></div></div>
+        <div class="jcard" data-lvl="C1" data-lessons="9" data-hours="5" data-idx="1"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span><span class="lvl c lvl-tr">C1</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Negotiation & Persuasion<svg class="verified" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 8.5-4-1-7-4-7-8.5V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div class="jfoot"><span class="jmeta">9 lessons · 5h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        <div class="jcard" data-lvl="C1" data-lessons="8" data-hours="4.5" data-idx="2"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span><span class="lvl c lvl-tr">C1</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Executive Presentations</div><div class="jfoot"><span class="jmeta">8 lessons · 4.5h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        <div class="jcard" data-lvl="B1" data-lessons="7" data-hours="3.5" data-idx="3"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span><span class="lvl b lvl-tr">B1</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Business Email Writing<svg class="verified" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 8.5-4-1-7-4-7-8.5V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div class="jfoot"><span class="jmeta">7 lessons · 3.5h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        <div class="jcard" data-lvl="B2" data-lessons="10" data-hours="5" data-idx="4"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span><span class="lvl b lvl-tr">B2</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Meetings & Small Talk</div><div class="jfoot"><span class="jmeta">10 lessons · 5h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        </div>
+        <div class="c-dots"></div>
+        <div class="c-more"><a href="#">Show all 8 courses <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></a></div>
+      </section>
+      <section class="carousel" data-cat="travel">
+        <div class="c-head">
+          <div class="ci"><span class="cat-icon"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"></path></svg></span><div><div class="cat-title">Travel & Hospitality</div><div class="cat-desc">Real-world travel situations and guest service.</div></div></div>
+          <div class="c-nav">
+            <button class="c-prev" aria-label="Previous"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg>Previous</button>
+            <button class="c-next" aria-label="Next">Next<svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></button>
+          </div>
+        </div>
+        <div class="c-track">
+        <div class="jcard" data-lvl="A1" data-lessons="8" data-hours="3" data-idx="5"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"></path></svg></span><span class="lvl a lvl-tr">A1</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Travel Essentials</div><div class="jfoot"><span class="jmeta">8 lessons · 3h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        <div class="jcard" data-lvl="B1" data-lessons="10" data-hours="4" data-idx="6"><div class="jthumb"><span class="owned-badge"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>Purchased</span><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"></path></svg></span><span class="lvl b lvl-tr">B1</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Hotel & Restaurant Service<svg class="verified" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 8.5-4-1-7-4-7-8.5V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div class="jfoot"><span class="jmeta">10 lessons · 4h</span><span class="jfoot-actions"><a href="#" class="continue-link"><svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>Continue</a><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></span></div></div></div>
+        <div class="jcard" data-lvl="A2" data-lessons="6" data-hours="2.5" data-idx="7"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"></path></svg></span><span class="lvl a lvl-tr">A2</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Airport & Transit</div><div class="jfoot"><span class="jmeta">6 lessons · 2.5h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        <div class="jcard" data-lvl="A2" data-lessons="7" data-hours="3" data-idx="8"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"></path></svg></span><span class="lvl a lvl-tr">A2</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Sightseeing & Directions</div><div class="jfoot"><span class="jmeta">7 lessons · 3h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        <div class="jcard" data-lvl="B1" data-lessons="6" data-hours="3" data-idx="9"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18"></path></svg></span><span class="lvl b lvl-tr">B1</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Handling Guest Complaints<svg class="verified" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 8.5-4-1-7-4-7-8.5V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div class="jfoot"><span class="jmeta">6 lessons · 3h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        </div>
+        <div class="c-dots"></div>
+        <div class="c-more"><a href="#">Show all 6 courses <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></a></div>
+      </section>
+      <section class="carousel" data-cat="acad">
+        <div class="c-head">
+          <div class="ci"><span class="cat-icon"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5z"></path><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path></svg></span><div><div class="cat-title">Academic English</div><div class="cat-desc">University-level reading, writing, and discussion.</div></div></div>
+          <div class="c-nav">
+            <button class="c-prev" aria-label="Previous"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg>Previous</button>
+            <button class="c-next" aria-label="Next">Next<svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></button>
+          </div>
+        </div>
+        <div class="c-track">
+        <div class="jcard" data-lvl="B2" data-lessons="9" data-hours="5" data-idx="10"><div class="jthumb"><span class="owned-badge"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg>Purchased</span><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5z"></path><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path></svg></span><span class="lvl b lvl-tr">B2</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Academic Writing Essentials<svg class="verified" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 8.5-4-1-7-4-7-8.5V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div class="jfoot"><span class="jmeta">9 lessons · 5h</span><span class="jfoot-actions"><a href="#" class="continue-link"><svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>Continue</a><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></span></div></div></div>
+        <div class="jcard" data-lvl="C1" data-lessons="7" data-hours="4" data-idx="11"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5z"></path><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path></svg></span><span class="lvl c lvl-tr">C1</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Seminars & Discussions</div><div class="jfoot"><span class="jmeta">7 lessons · 4h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        <div class="jcard" data-lvl="C1" data-lessons="6" data-hours="3.5" data-idx="12"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5z"></path><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path></svg></span><span class="lvl c lvl-tr">C1</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Research Presentations<svg class="verified" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 8.5-4-1-7-4-7-8.5V6z"></path><path d="M9 12l2 2 4-4"></path></svg></div><div class="jfoot"><span class="jmeta">6 lessons · 3.5h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        <div class="jcard" data-lvl="B2" data-lessons="8" data-hours="4" data-idx="13"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5z"></path><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path></svg></span><span class="lvl b lvl-tr">B2</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Reading Academic Texts</div><div class="jfoot"><span class="jmeta">8 lessons · 4h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        <div class="jcard" data-lvl="B1" data-lessons="5" data-hours="2.5" data-idx="14"><div class="jthumb"><span class="cat-chip"><svg width="52" height="52" fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5z"></path><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path></svg></span><span class="lvl b lvl-tr">B1</span><span class="ph"><svg width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.6"></circle><path d="M21 15l-5-5L5 21"></path></svg></span></div><div class="jbody"><div class="jtitle">Referencing & Citations</div><div class="jfoot"><span class="jmeta">5 lessons · 2.5h</span><button class="bookmark" aria-label="Save to favorites"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 4h12v16l-6-4-6 4z"></path></svg></button></div></div></div>
+        </div>
+        <div class="c-dots"></div>
+        <div class="c-more"><a href="#">Show all 7 courses <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg></a></div>
+      </section>
+    </div>
+
+    <div class="empty" id="empty">
+      <div style="font-size:34px">🔍</div>
+      <div style="font:600 16px 'M PLUS 2';color:var(--text2)">No courses match your filters</div>
+      <div style="font:400 13px 'M PLUS 2'">Try removing a filter or searching a different topic.</div>
+    </div>
+  </div>
+  <!-- ============ MY PAGE ============ -->
 </main>
 
 <!-- Switch-course dialog -->
@@ -418,6 +617,143 @@ main{ max-width:1200px; margin:0 auto; padding:28px 24px 64px; }
   });
 
   renderCard(COURSES[0]);
+})();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('.nav a').forEach(function(a){
+    a.addEventListener('click',function(){
+      var p=a.dataset.page; if(!p) return;
+      var target=document.getElementById('page-'+p); if(!target) return;
+      document.querySelectorAll('.nav a').forEach(function(x){ x.classList.remove('active'); });
+      a.classList.add('active');
+      document.querySelectorAll('.page').forEach(function(pg){ pg.classList.remove('show'); });
+      target.classList.add('show');
+      window.scrollTo(0,0);
+      window.dispatchEvent(new Event('resize'));
+    });
+  });
+  document.querySelectorAll('.pill').forEach(function(p){
+    p.addEventListener('click',function(){
+      var row=p.parentElement;
+      row.querySelectorAll('.pill').forEach(function(x){ x.classList.remove('on'); });
+      p.classList.add('on');
+    });
+  });
+
+  // ---- Courses carousels: Prev/Next + dots (position-based) ----
+  (function(){
+    document.querySelectorAll('.carousel').forEach(function(car){
+      var track=car.querySelector('.c-track');
+      var prev=car.querySelector('.c-prev');
+      var next=car.querySelector('.c-next');
+      var dotsWrap=car.querySelector('.c-dots');
+      var dots=[];
+      function maxScroll(){ return Math.max(0, track.scrollWidth - track.clientWidth); }
+      function pageCount(){ return track.clientWidth>0 ? Math.max(1, Math.ceil(track.scrollWidth / track.clientWidth)) : 1; }
+      function update(){
+        var m=maxScroll();
+        var a = (m<=1 || dots.length<=1) ? 0 : Math.round((track.scrollLeft/m)*(dots.length-1));
+        dots.forEach(function(d,k){ d.classList.toggle('on', k===a); });
+        if(prev) prev.disabled = track.scrollLeft <= 1;
+        if(next) next.disabled = track.scrollLeft >= m-1;
+      }
+      function build(){
+        var n=pageCount(); dotsWrap.innerHTML=''; dots=[];
+        for(var k=0;k<n;k++){
+          var d=document.createElement('i');
+          (function(idx){ d.addEventListener('click',function(){
+            var m=maxScroll(); var target=(n>1)?(idx/(n-1))*m:0;
+            track.scrollTo({left:target, behavior:'smooth'});
+          }); })(k);
+          dotsWrap.appendChild(d); dots.push(d);
+        }
+        dotsWrap.style.display = maxScroll()>1 ? '' : 'none';
+        update();
+      }
+      if(prev) prev.addEventListener('click',function(){ track.scrollBy({left:-track.clientWidth, behavior:'smooth'}); });
+      if(next) next.addEventListener('click',function(){ track.scrollBy({left:track.clientWidth, behavior:'smooth'}); });
+      track.addEventListener('scroll', update);
+      window.addEventListener('resize', build);
+      build();
+    });
+    document.querySelectorAll('.bookmark').forEach(function(b){
+      b.addEventListener('click',function(e){ e.stopPropagation(); b.classList.toggle('on'); });
+    });
+  })();
+
+
+  // ---- Courses: interactive dropdowns (filter + sort) ----
+  (function(){
+    var root = document.getElementById('page-courses');
+    if(!root) return;
+    var dds = root.querySelectorAll('.dd');
+    var state = { level:'All', time:'Any', category:'All', sort:'rec' };
+    function closeAll(){ dds.forEach(function(d){ d.classList.remove('open'); }); }
+    dds.forEach(function(d){
+      var btn = d.querySelector('.select');
+      var val = d.querySelector('.dd-val');
+      var key = d.dataset.key;
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var wasOpen = d.classList.contains('open');
+        closeAll();
+        if(!wasOpen) d.classList.add('open');
+      });
+      d.querySelectorAll('.dd-opt').forEach(function(opt){
+        opt.addEventListener('click', function(e){
+          e.stopPropagation();
+          d.querySelectorAll('.dd-opt').forEach(function(o){ o.classList.remove('on'); });
+          opt.classList.add('on');
+          state[key] = opt.dataset.val;
+          val.textContent = opt.dataset.btn;
+          d.classList.remove('open');
+          apply();
+        });
+      });
+    });
+    document.addEventListener('click', closeAll);
+
+    var carousels = root.querySelectorAll('.carousel');
+    var rank = {A1:1,A2:2,B1:3,B2:4,C1:5,C2:6};
+    function timeOK(h){
+      if(state.time==='Any') return true;
+      if(state.time==='le3')  return h<=3;
+      if(state.time==='3to5') return h>3 && h<=5;
+      if(state.time==='ge5')  return h>5;
+      return true;
+    }
+    function apply(){
+      var totalShown = 0;
+      carousels.forEach(function(car){
+        var catOK = (state.category==='All') || (car.dataset.cat===state.category);
+        var track = car.querySelector('.c-track');
+        var cards = Array.prototype.slice.call(track.querySelectorAll('.jcard'));
+        var shown = 0;
+        cards.forEach(function(c){
+          var ok = catOK
+            && (state.level==='All' || c.dataset.lvl===state.level)
+            && timeOK(parseFloat(c.dataset.hours));
+          c.style.display = ok ? '' : 'none';
+          if(ok) shown++;
+        });
+        // ordering
+        var ordered = cards.slice();
+        if(state.sort==='level'){ ordered.sort(function(a,b){ return (rank[a.dataset.lvl]||99)-(rank[b.dataset.lvl]||99); }); }
+        else if(state.sort==='lessons'){ ordered.sort(function(a,b){ return (parseInt(b.dataset.lessons)||0)-(parseInt(a.dataset.lessons)||0); }); }
+        else { ordered.sort(function(a,b){ return (+a.dataset.idx)-(+b.dataset.idx); }); }
+        ordered.forEach(function(c){ track.appendChild(c); });
+        track.scrollLeft = 0;
+        car.style.display = (catOK && shown>0) ? '' : 'none';
+        if(catOK && shown>0) totalShown += shown;
+      });
+      var emptyEl = document.getElementById('empty');
+      if(emptyEl) emptyEl.style.display = totalShown>0 ? 'none' : 'block';
+      window.dispatchEvent(new Event('resize')); // rebuild carousel dots
+    }
+    apply();
+  })();
+
 })();
 </script>
 </body>
